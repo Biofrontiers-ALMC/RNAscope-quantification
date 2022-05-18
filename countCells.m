@@ -6,7 +6,7 @@ clc
 file = 'D:\Projects\ALMC Tickets\T362-McNulty\data\1c_PLVGATD2D1.nd2';
 
 nuclThreshold = 150;  %Greyscale to threshold nuclei in GFP channel
-maxNuclSize = 50;  %Largest valid object in pixels
+maxNuclSize = 50;  %Largest valid nucleus in pixels
 
 %Threshold to count puncta by maximum brightness in the cell
 ch570Threshold = 800;
