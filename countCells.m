@@ -18,13 +18,12 @@ end
 
 %%
 %Make a mask
-% nuclMask = mip(:, :, 1) > 150;
-nuclMask = mip(:, :, 2) > 100;
-nuclMask = imopen(nuclMask, strel('disk', 2));
+nuclMask = mip(:, :, 2) > 150;
+nuclMask = imopen(nuclMask, strel('disk', 1));
 
 dd = -bwdist(~nuclMask);
 dd(~nuclMask) = -Inf;
-dd = imhmin(dd, 1);
+dd = imhmin(dd, 0.5);
 
 L = watershed(dd);
 
@@ -45,10 +44,10 @@ for iC = 1:3
 
     if iC == 1
         %Use mean intensity for FITC
-        validCells{iC} = [chCellData{iC}.MeanIntensity] > 100;
+        validCells{iC} = true(1, numel(chCellData{iC}));
 
     elseif iC == 2
-        validCells{iC} = [chCellData{iC}.MaxIntensity] > 2000;
+        validCells{iC} = [chCellData{iC}.MaxIntensity] > 800;
 
     elseif iC == 3
         validCells{iC} = [chCellData{iC}.MaxIntensity] > 3000;
@@ -60,11 +59,11 @@ end
 %% Analyze resulting data
 
 %Count number of cells
-numVGaT = nnz(validCells{1});
+numVGaT = nnz(validCells{1})
 
-numVGaTplusDrd2 = nnz(validCells{1} & validCells{2});
-numVGaTplusDrd1 = nnz(validCells{1} & validCells{3});
-numVGaTplusDrd1plusDrd2 = nnz(validCells{1} & validCells{2} & validCells{3});
+numVGaTplusDrd2 = nnz(validCells{1} & validCells{2} & ~validCells{3})
+numVGaTplusDrd1 = nnz(validCells{1} & validCells{3} & ~validCells{2})
+numVGaTplusDrd1plusDrd2 = nnz(validCells{1} & validCells{2} & validCells{3})
 
 %% Plotting
 
