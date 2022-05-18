@@ -35,12 +35,11 @@ This project also requires the following custom toolboxes:
 Run the file `countCells` in MATLAB. The parameters needed to run the code
  are now located at the top of the script:
 
-file - Path to ND2 file to process
-nuclThreshold - Greyscale to threshold nuclei in GFP channel
-maxNuclSize - Largest valid nucleus in pixels
-
-ch570Threshold - Threshold to count puncta in the 570 nm channel by maximum brightness in the cell
-ch650Threshold - Threshold to count puncta in the 650 nm channel by maximum brightness in the cell
+* file - Path to ND2 file to process
+* nuclThreshold - Greyscale to threshold nuclei in GFP channel
+* maxNuclSize - Largest valid nucleus in pixels
+* ch570Threshold - Threshold to count puncta in the 570 nm channel by maximum brightness in the cell
+* ch650Threshold - Threshold to count puncta in the 650 nm channel by maximum brightness in the cell
 
 ## Contact
 
